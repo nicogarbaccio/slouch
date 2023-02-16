@@ -19,9 +19,9 @@ function Chat() {
     );
 
     const [roomMessages] = useCollection(
-        query(roomId && collection(db, `rooms/${roomId.id}/messages`)),
-        // query(orderBy("timestamp", "desc"))
+        roomId && query(collection(db, `rooms/${roomId.id}/messages`), orderBy("timestamp", "asc")),
     );
+    
 
     useEffect(() => {
         chatRef?.current?.scrollIntoView(
