@@ -1,22 +1,37 @@
 import React from 'react'
+import ChatInput from './ChatInput';
 import styled from 'styled-components'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useSelector } from 'react-redux';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { collection , doc, orderBy, query } from 'firebase/firestore';
+import { selectRoomId } from '../../features/appSlice';
 
 function Chat() {
+    const roomId = useSelector(selectRoomId);
+
   return (
     <ChatContainer>
-        <Header>
-            <HeaderLeft>
-                <h4><strong>#Room-name</strong></h4>
-                <StarBorderOutlinedIcon />
-            </HeaderLeft>
-            <HeaderRight>
-                <p>
-                    <InfoOutlinedIcon /> Details
-                </p>
-            </HeaderRight>
-        </Header>
+        <>
+            <Header>
+                <HeaderLeft>
+                    <h4><strong>#Room-name</strong></h4>
+                    <StarBorderOutlinedIcon />
+                </HeaderLeft>
+                <HeaderRight>
+                    <p>
+                        <InfoOutlinedIcon />Details
+                    </p>
+                </HeaderRight>
+            </Header>
+            <ChatMessages>
+                {/* List out the messages */}
+            </ChatMessages>
+            <ChatInput
+                channelId= { roomId }
+            />
+        </>
     </ChatContainer>
   )
 }
@@ -35,6 +50,10 @@ const Header = styled.div`
     justify-content: space-between;
     padding: 20px;
     border-bottom: 1px solid lightgray;
+`;
+
+const ChatMessages = styled.div`
+
 `;
 
 const HeaderLeft = styled.div`
