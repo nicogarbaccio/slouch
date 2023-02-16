@@ -1,5 +1,7 @@
 import React from 'react'
 import ChatInput from './ChatInput';
+import Message from './Message';
+import ChatBottom from './ChatBottom';
 import styled from 'styled-components'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -7,17 +9,34 @@ import { useSelector } from 'react-redux';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { collection , doc, orderBy, query } from 'firebase/firestore';
 import { selectRoomId } from '../../features/appSlice';
+import { useRef, useEffect, useState } from 'react';
+import { auth, db } from '../../firebase';
 
 function Chat() {
+    const chatRef = useRef(null); 
     const roomId = useSelector(selectRoomId);
+    const [roomDetails, setRoomDetails] = useDocument(
+        roomId && doc(db, `rooms/${roomId.id}`)
+    );
+
+    const [roomMessages, loading] = useCollection(
+        query(roomId && collection(db, `rooms/${roomId.id}/messages`))
+    );
+
+    useEffect(() => {
+        chatRef?.current?.scrollIntoView(
+            {behavior: "smooth"}
+        );
+    }, [roomId, loading, roomMessages]);
 
   return (
     <ChatContainer>
-        <>
+        {roomDetails && roomMessages && (
+            <>
             <Header>
                 <HeaderLeft>
-                    <h4><strong>#Room-name</strong></h4>
-                    <StarBorderOutlinedIcon />
+                    <h4><strong>#{roomDetails?.data().name.channelName}</strong></h4>
+                    <span>&#127775;</span>
                 </HeaderLeft>
                 <HeaderRight>
                     <p>
@@ -26,12 +45,27 @@ function Chat() {
                 </HeaderRight>
             </Header>
             <ChatMessages>
-                {/* List out the messages */}
+            { roomMessages?.docs.map(doc => {
+                    const { message, timestamp, user, userImage } = doc.data();
+                    return (
+                        <Message
+                            key={doc.id}
+                            message={message}
+                            timestamp={timestamp}
+                            user={user}
+                            userImage = {userImage}
+                        />
+                    );
+            })}
+            <ChatBottom ref={chatRef} />
             </ChatMessages>
             <ChatInput
+                chatRef={chatRef}
+                channelName={roomDetails?.data().name.channelName}
                 channelId= { roomId }
             />
         </>
+        )}
     </ChatContainer>
   )
 }
