@@ -1,13 +1,12 @@
 import React from 'react'
 import ChatInput from './ChatInput';
 import Message from './Message';
-import ChatBottom from './ChatBottom';
 import styled from 'styled-components'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useSelector } from 'react-redux';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import { collection , doc, orderBy, query } from 'firebase/firestore';
+import { collection , doc, query, orderBy } from 'firebase/firestore';
 import { selectRoomId } from '../../features/appSlice';
 import { useRef, useEffect, useState } from 'react';
 import { auth, db } from '../../firebase';
@@ -15,19 +14,20 @@ import { auth, db } from '../../firebase';
 function Chat() {
     const chatRef = useRef(null); 
     const roomId = useSelector(selectRoomId);
-    const [roomDetails, setRoomDetails] = useDocument(
+    const [roomDetails] = useDocument(
         roomId && doc(db, `rooms/${roomId.id}`)
     );
 
-    const [roomMessages, loading] = useCollection(
-        query(roomId && collection(db, `rooms/${roomId.id}/messages`))
+    const [roomMessages] = useCollection(
+        query(roomId && collection(db, `rooms/${roomId.id}/messages`)),
+        // query(orderBy("timestamp", "desc"))
     );
 
     useEffect(() => {
         chatRef?.current?.scrollIntoView(
             {behavior: "smooth"}
         );
-    }, [roomId, loading, roomMessages]);
+    }, [roomId, roomMessages]);
 
   return (
     <ChatContainer>
@@ -114,4 +114,8 @@ const HeaderRight = styled.div`
         margin-right: 5px !important;
         font-size: 16px;
     }
+`;
+
+const ChatBottom = styled.div`
+    padding-bottom: 150px;
 `;
