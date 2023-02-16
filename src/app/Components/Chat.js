@@ -18,7 +18,7 @@ function Chat() {
         roomId && doc(db, `rooms/${roomId.id}`)
     );
 
-    const [roomMessages] = useCollection(
+    const [roomMessages, loading] = useCollection(
         roomId && query(collection(db, `rooms/${roomId.id}/messages`), orderBy("timestamp", "asc")),
     );
     
@@ -27,7 +27,7 @@ function Chat() {
         chatRef?.current?.scrollIntoView(
             {behavior: "smooth"}
         );
-    }, [roomId, roomMessages]);
+    }, [roomId, loading, roomMessages]);
 
   return (
     <ChatContainer>

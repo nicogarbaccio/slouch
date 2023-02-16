@@ -23,9 +23,9 @@ function ChatInput({ channelName, channelId, chatRef }) {
         // userImage: auth.currentUser.photoURL
     });
 
-    // chatRef.current.scrollIntoView({
-    //     behavior: "smooth"
-    // });
+    chatRef.current.scrollIntoView({
+        behavior: "smooth"
+    });
     setUserInput('');
 
     }
