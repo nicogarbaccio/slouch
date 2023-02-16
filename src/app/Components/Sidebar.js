@@ -14,9 +14,9 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
-import { collection, addDoc } from 'firebase/firestore'; 
+import { collection } from 'firebase/firestore'; 
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { db } from '../../firebase';
+import { db, auth } from '../../firebase';
 
 function Sidebar() {
     const [channels, loading, error] = useCollection(
@@ -25,6 +25,7 @@ function Sidebar() {
           snapshotListenOptions: { includeMetadataChanges: true },
         }
       );
+
   return (
         <SidebarContainer>
             <SidebarHeader>
@@ -32,7 +33,7 @@ function Sidebar() {
                     <h2>HQ</h2>
                     <h3>
                         <FiberManualRecordIcon />
-                        Nico Garbaccio
+                        {auth.currentUser.displayName}
                     </h3>
                 </SidebarInfo>
                 <CreateIcon />

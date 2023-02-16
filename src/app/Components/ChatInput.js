@@ -17,10 +17,8 @@ function ChatInput({ channelName, channelId, chatRef }) {
     const general = addDoc(messagesRef, {
         message: userInput,
         timestamp: serverTimestamp(),
-        user: "Nico Garbaccio",
-        userImage: "https://media.licdn.com/dms/image/C4D03AQEvB_EaSvbaTQ/profile-displayphoto-shrink_800_800/0/1580590971326?e=2147483647&v=beta&t=zdXCX1aY9G4hvv7UZEYoDFdh0YydoGgjLArTfCpfpLc"
-        // user: auth.currentUser.displayName,
-        // userImage: auth.currentUser.photoURL
+        user: auth.currentUser.displayName,
+        userImage: auth.currentUser.photoURL
     });
 
     chatRef.current.scrollIntoView({
