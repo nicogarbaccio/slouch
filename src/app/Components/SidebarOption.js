@@ -1,9 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
+import { db } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore'; 
 
-function SidebarOption({Icon, title}) {
+function SidebarOption({ Icon, title, addChannelOption }) {
+    const addChannel = () => {
+        const channelName = prompt('Enter a channel name');
+        if (channelName) {
+            try {
+                addDoc(collection(db, "rooms"), {
+                    name: {channelName}
+                });
+            } catch (e) {
+               console.error("Error adding document: ", e);
+            }
+        }
+    }
+
+    const selectChannel = () => {
+
+    }
+
   return (
-    <SidebarOptionContainer>
+    <SidebarOptionContainer onClick={addChannelOption ? addChannel : selectChannel}>
         {Icon && <Icon fontSize='small' style={{padding: 10}} />}
         {Icon ? (
             <h3>{title}</h3>
