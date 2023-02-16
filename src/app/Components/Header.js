@@ -2,22 +2,25 @@ import React from 'react'
 import styled from 'styled-components';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import SearchIcon from '@mui/icons-material/Search';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 function Header() {
   return (
     <HeaderContainer>
-        {/* Header left */}
         <HeaderLeft>
             <HeaderAvatar
                 // TODO: Add onClick
             />
             <AccessTimeIcon />
         </HeaderLeft>
-        {/* Header search */}
         <HeaderSearch>
-
+            <SearchIcon />
+            <input type="text" placeholder="Search"></input>
         </HeaderSearch>
-        {/* Header right */}
+        <HeaderRight>
+            <HelpOutlineIcon />
+        </HeaderRight>
     </HeaderContainer>
   )
 }
@@ -25,7 +28,23 @@ function Header() {
 export default Header
 
 const HeaderSearch = styled.div`
-    
+    display: flex;
+    flex: 0.4;
+    opacity: 1;
+    border-radius: 6px;
+    background-color: #421f44;
+    text-align: center;
+    padding: 0 50px;
+    border: 1px solid gray;
+
+    > input {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        min-width: 30vw;
+        outline: 0;
+        color: white;
+    }
 `;
 
 const HeaderContainer = styled.div`
@@ -47,6 +66,16 @@ const HeaderLeft = styled.div`
     > .MuiSvgIcon-root {
         margin-left: auto;
         margin-right: 30px;
+    }
+`;
+
+const HeaderRight = styled.div`
+    display: flex;
+    flex: 0.3;
+    align-items: flex-end;
+    > .MuiSvgIcon-root {
+        margin-left: auto;
+        margin-right: 20px;
     }
 `;
 
