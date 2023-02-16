@@ -2,8 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore'; 
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 function SidebarOption({ Icon, title, addChannelOption }) {
+    // const [channels, loading, error] = useCollection(collection(db, "rooms")); 
+
     const addChannel = () => {
         const channelName = prompt('Enter a channel name');
         if (channelName) {
