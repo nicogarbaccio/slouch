@@ -4,7 +4,6 @@ import { collection, addDoc, serverTimestamp  } from 'firebase/firestore';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
-
 function ChatInput({ channelName, channelId, chatRef }) {
     const [userInput, setUserInput] = useState("");
 
@@ -18,15 +17,16 @@ function ChatInput({ channelName, channelId, chatRef }) {
     const general = addDoc(messagesRef, {
         message: userInput,
         timestamp: serverTimestamp(),
-        user: auth.currentUser.displayName,
-        userImage: auth.currentUser.photoURL
+        user: "Nico Garbaccio",
+        userImage: "https://media.licdn.com/dms/image/C4D03AQEvB_EaSvbaTQ/profile-displayphoto-shrink_800_800/0/1580590971326?e=2147483647&v=beta&t=zdXCX1aY9G4hvv7UZEYoDFdh0YydoGgjLArTfCpfpLc"
+        // user: auth.currentUser.displayName,
+        // userImage: auth.currentUser.photoURL
     });
 
-    chatRef.current.scrollIntoView({
-        behavior: "smooth"
-    });
-
-    setUserInput("");
+    // chatRef.current.scrollIntoView({
+    //     behavior: "smooth"
+    // });
+    setUserInput('');
 
     }
 
@@ -34,7 +34,7 @@ function ChatInput({ channelName, channelId, chatRef }) {
     <ChatInputContainer>
         <form>
         <input
-            onChange={e => setUserInput(e.target.value)} 
+            onChange={e => setUserInput(e.target.value)}
             value={userInput} 
             placeholder={`Message #${channelName}`} />
             <Button 
@@ -64,6 +64,7 @@ const ChatInputContainer = styled.div`
         border-radius: 3px;
         padding: 20px;
         outline: none;
+        color: black;
     }
     > form > button {
         display: none !important;

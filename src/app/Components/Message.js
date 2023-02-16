@@ -4,16 +4,12 @@ import styled from 'styled-components'
 export default function Message({ message, timestamp, user, userImage }) {
   return (
     <MessageContainer>
-        <img src={userImage} alt="User" />
+        <img src={userImage} alt="" />
         <MessageInfo>
             <h4>
-                {user} {' '}
-                <span className='text-greenish font-light ml-[4px] text-xs'>
-                    {new Date(timestamp?.toDate()).toUTCString()}
-                </span>
+                {user} {' '}<span>{new Date(timestamp?.toDate()).toUTCString()}</span>
             </h4>
             <p>{message}</p>
-
         </MessageInfo>
     </MessageContainer>
   )
@@ -21,6 +17,7 @@ export default function Message({ message, timestamp, user, userImage }) {
 
 const MessageContainer = styled.div`
     display: flex;
+    align-items: center;
     padding: 20px;
     >  img {
         height: 50px;
@@ -30,6 +27,12 @@ const MessageContainer = styled.div`
 
 const MessageInfo = styled.div`
     padding-left: 10px;
+    h4 > span {
+        color: gray;
+        font-weight: 300;
+        margin-left: 4px;
+        font-size: 10px;
+    }
 `;
 
 
