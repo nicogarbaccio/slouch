@@ -40,11 +40,7 @@ function Sidebar() {
             </SidebarHeader>
             <SidebarOption Icon={InsertCommentIcon} title="Threads" />
             <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
-            <SidebarOption Icon={DraftsIcon} title="Saved items" />
-            <SidebarOption Icon={BookmarkBorderIcon} title="Channel browser" />
-            <SidebarOption Icon={PeopleAltIcon} title="People & user groups" />
             <SidebarOption Icon={AppsIcon} title="Apps" />
-            <SidebarOption Icon={FileCopyIcon} title="File browser" />
             <SidebarOption Icon={ExpandLessIcon} title="Show less" />
             <hr />
             <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
