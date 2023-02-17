@@ -40,7 +40,6 @@ function Sidebar() {
             </SidebarHeader>
             <SidebarOption Icon={InsertCommentIcon} title="Threads" />
             <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
-            <SidebarOption Icon={AppsIcon} title="Apps" />
             <SidebarOption Icon={ExpandLessIcon} title="Show less" />
             <hr />
             <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
