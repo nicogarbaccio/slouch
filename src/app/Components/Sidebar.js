@@ -6,7 +6,6 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CreateIcon from '@mui/icons-material/Create';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import InboxIcon from '@mui/icons-material/Inbox';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import { collection } from 'firebase/firestore'; 
@@ -35,7 +34,6 @@ function Sidebar() {
             </SidebarHeader>
             <SidebarOption Icon={InsertCommentIcon} title="Threads" />
             <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
-            <SidebarOption Icon={ExpandLessIcon} title="Show less" />
             <hr />
             <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
             <hr />

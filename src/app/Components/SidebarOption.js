@@ -32,7 +32,7 @@ function SidebarOption({ Icon, title, addChannelOption, id }) {
   return (
     <SidebarOptionContainer 
         onClick={addChannelOption ? addChannel : selectChannel}>
-        {Icon && <Icon fontSize='small' style={{padding: 10}} />}
+        {Icon && <Icon fontSize='large' style={{padding: 10}} />}
         {Icon ? (
             <h3>{title}</h3>
         ): (
@@ -50,6 +50,7 @@ const SidebarOptionContainer = styled.div`
     display: flex;
     font-size: 12px;
     align-items: center;
+    margin-top: 5px;
     padding-left: 2px;
     cursor: pointer;
     :hover {

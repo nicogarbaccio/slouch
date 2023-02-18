@@ -21,25 +21,28 @@ export const SidebarHeader = styled.div`
     > .MuiSvgIcon-root {
         padding: 8px;
         color: #49274b;
-        font-size: 18px;
+        font-size: 2rem;
         background-color: white; 
         border-radius: 999px;
+        margin-top: 10px;
     }
 `;
 
 export const SidebarInfo = styled.div`
     flex: 1;
-
     > h2 {
         font-size: 15px;
         font-weight: 900;
+        margin-top: 5px;
         margin-bottom: 5px;
+        padding: 5px;
     }
     > h3 {
         display: flex;
         font-size: 13px;
         font-weight: 400;
         align-items: center;
+        padding: 5px;
     }
     > h3 > .MuiSvgIcon-root {
         font-size: 14px;

@@ -63,6 +63,8 @@ const HeaderContainer = styled.div`
     padding: 10px 0;
     background-color: var(--slack-color);
     color: white;
+    border-bottom: 1px solid #49274b;
+
 `;
 
 const HeaderLeft = styled.div`
