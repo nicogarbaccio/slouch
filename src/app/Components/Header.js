@@ -5,7 +5,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SearchIcon from '@mui/icons-material/Search';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 
 function Header() {
